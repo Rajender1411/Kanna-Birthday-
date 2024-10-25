@@ -13,10 +13,23 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: url('birthday-bg.jpg') no-repeat center center fixed;
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             overflow-x: hidden;
+        }
+
+        /* Apply blur to the body background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(10px);
+            z-index: -1;
         }
 
         .container {
@@ -60,40 +73,37 @@
 
         /* Image Slider */
         .slider {
-            width: 100%;
+            width: 80%;
             height: 400px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 40px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
         }
 
         .slides {
             display: flex;
-            transition: 0.5s ease-in-out;
-            width: 500%;
+            gap: 10px;
+            transition: transform 0.5s ease;
         }
 
-        .slides img {
-            width: 20%;
+        .slide {
+            min-width: 30%;
+            height: 100%;
+            backface-visibility: hidden;
+            opacity: 0.9;
+            scroll-snap-align: center;
+        }
+
+        .slide img {
+            width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .slider-controls {
-            position: absolute;
-            top: 50%;
-            width: 70%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .arrow {
-            font-size: 2.5em;
-            color: white;
-            cursor: pointer;
-            user-select: none;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* Cards */
@@ -141,80 +151,59 @@
 
     <div class="container">
         <div class="slider">
-            <div class="slides" id="slides">
-                <img src="slide1.jpg" alt="Slide 1">
-                <img src="slide2.jpg" alt="Slide 2">
-                <img src="slide3.jpg" alt="Slide 3">
-                <img src="slide4.png" alt="Slide 4">
-                <img src="slide5.jpg" alt="Slide 5">
-            </div>
-
-            <div class="slider-controls">
-                <span class="arrow" id="prev">&#10094;</span>
-                <span class="arrow" id="next">&#10095;</span>
+            <div class="slides">
+                <div class="slide">
+                    <img src="slide1.jpg" alt="Slide 1">
+                </div>
+                <div class="slide">
+                    <img src="slide2.jpg" alt="Slide 2">
+                </div>
+                <div class="slide">
+                    <img src="slide3.jpg" alt="Slide 3">
+                </div>
+                <div class="slide">
+                    <img src="slide4.jpg" alt="Slide 4">
+                </div>
+                <div class="slide">
+                    <img src="slide5.jpg" alt="Slide 5">
+                </div>
             </div>
         </div>
 
         <h1>Happy Birthday Kannalu ♥️</h1>
 
         <p class="birthday-wish">
-            Chittikanna 😘, you bring so much joy and beauty to the lives of everyone around you. Your kindness, love, and warmth make the world a better place. We are all so grateful to have you, and I am so glad to have you in my life .Love you soo much Kannalu ♥️🫂. Here's to many more beautiful moments together!
+            Dear Kannalu, you bring so much joy and beauty to the lives of everyone around you. Your kindness, love, and warmth make the world a better place. We are all so grateful to have you, and today, we celebrate you for the amazing person you are. Here's to many more beautiful moments together!
         </p>
 
-        <a href="your-video-url.mp4" class="btn">Watch Birthday Video</a><span> </span>
+        <a href="video.mp4" class="btn">Surprise🤩</a>
 
         <div class="cards-container">
             <div class="card">
-                <img src="1.jpg" alt="Gift">
-                <div class="text">Nani💕</div>
+                <img src="1.jpg" alt="Card 1">
+                <div class="text">Nani♥️</div>
             </div>
             <div class="card">
-                <img src="3.jpg" alt="Cake">
-                <div class="text">Chittithalli🫂</div>
+                <img src="2.jpg" alt="Card 2">
+                <div class="text">Kanna🫂</div>
             </div>
             <div class="card">
-                <img src="2.jpg" alt="Party">
+                <img src="3.jpg" alt="Card 3">
                 <div class="text">Bangaram✨</div>
             </div>
             <div class="card">
-                <img src="4.jpg" alt="Balloons">
-                <div class="text">Nanna❤️</div>
+                <img src="4.jpg" alt="Card 4">
+                <div class="text">Chittithalli❤️</div>
             </div>
             <div class="card">
-                <img src="5.jpg" alt="Friends">
-                <div class="text">Kanna♥️</div>
+                <img src="5.jpg" alt="Card 5">
+                <div class="text">Nanna💕</div>
             </div>
         </div>
     </div>
 
     <script>
-        const slides = document.getElementById("slides");
-        const prev = document.getElementById("prev");
-        const next = document.getElementById("next");
-        let index = 0;
-
-        function showSlide(i) {
-            index += i;
-            if (index < 0) {
-                index = 4;
-            }
-            if (index > 4) {
-                index = 0;
-            }
-            slides.style.transform = `translateX(${-index * 100}%)`;
-        }
-
-        prev.addEventListener("click", function () {
-            showSlide(-1);
-        });
-
-        next.addEventListener("click", function () {
-            showSlide(1);
-        });
-
-        setInterval(() => {
-            showSlide(1);
-        }, 4000);
+        // Optional: Add some interactivity if required
     </script>
 
 </body>
